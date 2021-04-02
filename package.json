@@ -4,7 +4,10 @@
   "description": "Testing Layr libraries",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-backend": "DEBUG=layr:* DEBUG_DEPTH=5 npx ts-node ./src/backend.ts",
+    "start-frontend": "npx webpack serve --mode=development",
+    "start": "concurrently --names \"SERVER,FRONTEND\" --prefix-colors \"green,yellow\" npm:start-backend npm:start-frontend"
   },
   "author": "Igsu-Bravo",
   "license": "MIT",
@@ -32,6 +35,7 @@
     "@layr/react-integration": "^1.0.34",
     "@layr/storable": "^1.1.21",
     "@types/react": "^17.0.3",
+    "concurrently": "^6.0.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   }
