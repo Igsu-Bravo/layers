@@ -1,7 +1,11 @@
 {
-    "presets": [["@babel/preset-env", { "targets": { "node": "10" } }]],
-    "plugins": [
-        ["@babel/plugin-proposal-decorators", {"legacy": true}],
-        ["@babel/plugin-proposal-class-properties"]
-    ]
+  "presets": [
+      ["@babel/preset-env", { "targets": { "node": "10" } }],
+      "@babel/react",
+      "@babel/typescript"
+  ],
+  "plugins": [
+      ["@babel/plugin-proposal-decorators", {"legacy": true}],
+      ["@babel/plugin-proposal-class-properties"]
+  ]
 }

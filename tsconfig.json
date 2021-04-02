@@ -1,11 +1,12 @@
 {
-    "compilerOptions": {
-        "experimentalDecorators": true,
-        "target": "ES6",
-        "moduleResolution": "node",
-        "module": "commonjs",
-        "esModuleInterop": true,
-    },
-    "include": ["src/**/*.ts"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
+  "compilerOptions": {
+      "experimentalDecorators": true,
+      "target": "ES6",
+      "moduleResolution": "node",
+      "module": "commonjs",
+      "esModuleInterop": true,
+      "jsx": "react",
+  },
+  "include": ["src/**/*.ts", "src/frontend.tsx"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
 }
