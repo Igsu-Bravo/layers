@@ -2,8 +2,26 @@
 
 ## Development
 
-### Run backend
+### Install dependencies
 
 ```shell
-$ DEBUG=layr:* DEBUG_DEPTH=5 npx ts-node ./src/backend.ts
+$ npm install
+```
+
+### Run local development server
+
+```shell
+$ npm start
+```
+
+### Run frontend only
+
+```shell
+$ npm run start-frontend
+```
+
+### Run backend only
+
+```shell
+$ npm run start-backend
 ```
