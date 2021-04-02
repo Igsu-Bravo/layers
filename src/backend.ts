@@ -1,16 +1,32 @@
-import { Component, attribute, method, expose } from "@layr/component";
+import { Component, expose, validators } from "@layr/component";
 import { ComponentHTTPServer } from "@layr/component-http-server";
+import { MemoryStore } from "@layr/memory-store";
+import { Storable, primaryIdentifier, attribute } from "@layr/storable";
 
-export class Main extends Component {
+const { notEmpty, maxLength } = validators;
+
+@expose({
+  find: { call: true },
+  prototype: {
+    load: { call: true },
+    save: { call: true },
+  },
+})
+export class Message extends Storable(Component) {
   // The expose decorator allows "name" to be set remotely
-  @expose({ set: true }) @attribute("string") name = "OK!";
+  @expose({ set: true, get: true }) @primaryIdentifier() id;
 
-  // Here we can call "health()" remotely
-  @expose({ call: true }) @method() async health(): Promise<string> {
-    return `Server ${this.name}`;
-  }
+  @expose({ get: true, set: true })
+  @attribute("string", { validators: [notEmpty(), maxLength(300)] })
+  message = "";
+
+  @expose({ get: true }) @attribute("Date") createdAt = new Date();
 }
 
-const server = new ComponentHTTPServer(Main, { port: 3210 });
+const store = new MemoryStore();
+
+store.registerStorable(Message);
+
+const server = new ComponentHTTPServer(Message, { port: 3210 });
 
 server.start();

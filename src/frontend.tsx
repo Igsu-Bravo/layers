@@ -79,15 +79,13 @@ async function main() {
     @view() static MessageList() {
       const { Message } = this;
 
-      const [isLoading, loadingError] = useAsyncCall(
-        async (): JSX.Element => {
-          this.existingMessages = await Message.find(
-            {},
-            { text: true, createdAt: true },
-            { sort: { createdAt: "desc" }, limit: 30 }
-          );
-        }
-      );
+      const [isLoading, loadingError] = useAsyncCall(async () => {
+        this.existingMessages = await Message.find(
+          {},
+          { text: true, createdAt: true },
+          { sort: { createdAt: "desc" }, limit: 30 }
+        );
+      });
 
       if (isLoading) {
         return null;
