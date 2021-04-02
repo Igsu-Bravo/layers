@@ -15,7 +15,7 @@ module.exports = (env, argv) => {
         {
           test: /\.tsx?$/,
           include: path.join(__dirname, 'src'),
-          loader: 'babel-loader'
+          loader: 'ts-loader'
         }
       ]
     },
@@ -23,7 +23,7 @@ module.exports = (env, argv) => {
       // generate index.html from template
       new HtmlWebpackPlugin({
         template: './src/index.html',
-        loader: 'babel-loader'
+        inject: false
       })
     ],
     // Generate source maps for debugging

@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
-      "experimentalDecorators": true,
-      "target": "ES6",
-      "moduleResolution": "node",
-      "module": "commonjs",
-      "esModuleInterop": true,
-      "jsx": "react",
+    "target": "ES6",  
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "lib": ["ESNext", "DOM"],
+    "jsx": "react",
+    "sourceMap": true,
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
   },
-  "include": ["src/**/*.ts", "src/frontend.tsx"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "**/*.spec.ts"]
 }

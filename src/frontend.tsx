@@ -9,6 +9,7 @@ import {
   useAsyncCallback,
   useRecomputableMemo,
 } from "@layr/react-integration";
+import type { Message as MessageType } from "./backend";
 
 async function main() {
   const client = new ComponentHTTPClient("http://localhost:3210", {
@@ -16,7 +17,9 @@ async function main() {
   });
 
   // What is this?
-  const BackendMessage = await client.getComponent();
+  const BackendMessage = (await client.getComponent()) as typeof MessageType;
+
+  console.log("BACKEND MESSAGE", BackendMessage);
 
   class Message extends BackendMessage {
     @view() Viewer(): JSX.Element {
@@ -29,7 +32,7 @@ async function main() {
       );
     }
 
-    @view() Form({ onSubmit }): JSX.Element {
+    @view() Form({ onSubmit }: { onSubmit: () => Promise<void> }): JSX.Element {
       const [handleSubmit, isSubmitting, submitError] = useAsyncCallback(
         async (event) => {
           event.preventDefault();
@@ -64,7 +67,7 @@ async function main() {
   class Guestbook extends Component {
     @provide() static Message = Message;
 
-    @attribute("Message[]") static existingMessages = [];
+    @attribute("Message[]") static existingMessages: Message[] = [];
 
     @view() static Home(): JSX.Element {
       return (

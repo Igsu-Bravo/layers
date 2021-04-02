@@ -14,11 +14,11 @@ const { notEmpty, maxLength } = validators;
 })
 export class Message extends Storable(Component) {
   // The expose decorator allows "name" to be set remotely
-  @expose({ set: true, get: true }) @primaryIdentifier() id;
+  @expose({ set: true, get: true }) @primaryIdentifier() id!: string;
 
   @expose({ get: true, set: true })
   @attribute("string", { validators: [notEmpty(), maxLength(300)] })
-  message = "";
+  text = "";
 
   @expose({ get: true }) @attribute("Date") createdAt = new Date();
 }
